@@ -1,6 +1,8 @@
+import { ViewTransition } from "react";
 import Link from "next/link";
 import { CountFigure } from "@/components/CountFigure";
 import { ExternalLink } from "@/components/ExternalLink";
+import { ProjectMotif } from "@/components/ProjectMotif";
 import { SpotSurface } from "@/components/SpotSurface";
 import type { Project } from "@/lib/content";
 
@@ -17,15 +19,28 @@ export function ProjectArticle({
       id={project.id}
       className="project"
       data-theme={project.theme}
-      tilt
     >
+      <span className="project-scan" aria-hidden="true" />
+      <ProjectMotif theme={project.theme} />
       <p className="project-kicker">
         <span>{String(index).padStart(2, "0")}</span>
         {project.category}
       </p>
       <div className="project-body">
         <h3>
-          <Link href={`/projects/${project.id}`}>{project.name}</Link>
+          <Link
+            href={`/projects/${project.id}`}
+            className="project-title"
+            transitionTypes={["nav-forward"]}
+          >
+            <ViewTransition
+              name={`project-${project.id}`}
+              share="morph"
+              default="none"
+            >
+              <span>{project.name}</span>
+            </ViewTransition>
+          </Link>
         </h3>
         <p className="summary">{project.summary}</p>
         <ul className="points">

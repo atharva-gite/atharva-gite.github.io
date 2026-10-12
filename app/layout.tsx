@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { FieldMarks } from "@/components/FieldMarks";
 import { PointerGlow } from "@/components/PointerGlow";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -59,12 +60,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <rect width="100%" height="100%" filter="url(#site-grain)" />
           </svg>
         </div>
+        <FieldMarks />
         <a className="skip" href="#main">
           Skip to content
         </a>
         <SiteHeader
           name={profile.name}
           email={profile.email}
+          cv={profile.cv}
           links={navigation}
         />
         {children}

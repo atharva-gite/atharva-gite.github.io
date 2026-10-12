@@ -18,3 +18,9 @@ npm run lint
 npm run typecheck
 npm run build
 ```
+
+## GitHub Pages
+
+Pushes to `main` build a static export and publish it with GitHub Actions. The site is served from the repository subpath, `https://atharva-gite.github.io/portfolio/`.
+
+Pages has to be set to deploy from GitHub Actions (Settings → Pages → Source). The workflow does the rest.

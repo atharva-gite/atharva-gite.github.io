@@ -48,13 +48,21 @@ export type CourseGroup = {
   courses: string[];
 };
 
+/** Empty in local dev. The Pages workflow sets this to the repo subpath. */
+const basePath = (process.env.PAGES_BASE_PATH ?? "").replace(/\/$/, "");
+
+function sitePath(path: `/${string}`) {
+  return `${basePath === "/" ? "" : basePath}${path}`;
+}
+
 export const profile = {
   name: "Atharva Gite",
   email: "atharva.gite@kcl.ac.uk",
   phone: "+44 7351160709",
   phoneHref: "tel:+447351160709",
+  cv: sitePath("/Atharva-Gite-CV.pdf"),
   credential: "MSc Advanced Computing, King's College London",
-  lede: "I build across software, machine learning, and markets. The part worth talking about is how the details hold up.",
+  lede: "What matters is how the details hold.",
   description:
     "Atharva Gite is a Computer Engineering graduate and MSc Advanced Computing student. Portfolio work spans software engineering, AI/ML, quantitative research, trading systems, and backend infrastructure.",
 } as const;
@@ -69,21 +77,26 @@ export const socialLinks: ProjectLink[] = [
 ];
 
 export const navigation = [
-  { href: "/#work", label: "Work" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#education", label: "Education" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#about", label: "About" },
+  { href: sitePath("/#work"), label: "Work" },
+  { href: sitePath("/#experience"), label: "Experience" },
+  { href: sitePath("/#education"), label: "Education" },
+  { href: sitePath("/#skills"), label: "Skills" },
+  { href: sitePath("/#about"), label: "About" },
 ] as const;
+
+export const ledeHits = ["Software", "Machine learning", "Markets"] as const;
 
 export const about = {
   paragraphs: [
-    "Software, machine learning, and markets, in the projects below.",
+    "Master's student at King's. I build systems across software, machine learning, and markets.",
+    "Those are the interests. I am always up for a conversation about the work.",
   ],
 } as const;
 
-export const workIntro =
-  "Application software, document retrieval, fixed-income modeling, pairs research, and a limit-order-book simulator.";
+export const workIntro = [
+  "A study engine, a Treasury curve, and a pairs book across the top.",
+  "An application tracker and a limit-order book beneath.",
+] as const;
 
 export const roles: Role[] = [
   {
@@ -139,7 +152,7 @@ export const education = [
     credential: "Bachelor of Technology, Computer Engineering",
     dates: "2021 – 2025",
     detail: "Mumbai, India · CGPA 8.48/10",
-    note: "Completed undergraduate coursework.",
+    note: "",
   },
 ] as const;
 
@@ -275,9 +288,6 @@ export const skillGroups: CourseGroup[] = [
     ],
   },
 ];
-
-export const practiceNote =
-  "500+ data structures and algorithms problems solved across LeetCode, GeeksforGeeks, and DeepML.";
 
 const folio: Project = {
   id: "folio",

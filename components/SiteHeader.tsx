@@ -12,17 +12,24 @@ type NavLink = {
 export function SiteHeader({
   name,
   email,
+  cv,
   links,
 }: {
   name: string;
   email: string;
+  cv: string;
   links: readonly NavLink[];
 }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const listRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLSpanElement>(null);
+  const hudRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLSpanElement>(null);
+  const pctRef = useRef<HTMLSpanElement>(null);
+  const statusRef = useRef<HTMLSpanElement>(null);
+  const statusLabel = useRef("");
+  const booting = useRef(true);
   const [bar, setBar] = useState({ x: 0, width: 0, visible: false });
 
   useEffect(() => {
@@ -31,12 +38,6 @@ export function SiteHeader({
     const update = () => {
       frame = 0;
       setScrolled(window.scrollY > 8);
-      const progress = progressRef.current;
-      if (progress) {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const amount = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-        progress.style.transform = `scaleX(${amount})`;
-      }
 
       const offset = 96;
       let current = document.getElementById("work") ? (links[0]?.href ?? "") : "";
@@ -49,6 +50,30 @@ export function SiteHeader({
         }
       }
       setActive(current);
+
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const amount = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      const percent = Math.round(amount * 100);
+      if (fillRef.current && !booting.current) {
+        fillRef.current.style.width = `${percent}%`;
+      }
+      if (pctRef.current) {
+        pctRef.current.textContent = `${String(percent).padStart(3, "0")}%`;
+      }
+      if (statusRef.current) {
+        const label = links.find((link) => link.href === current)?.label;
+        const nextStatus =
+          percent >= 100 ? "READY" : percent < 2 ? "BOOT" : (label ?? "LOAD").toUpperCase();
+        if (statusLabel.current && statusLabel.current !== nextStatus) {
+          const node = statusRef.current;
+          node.classList.remove("is-checkpoint");
+          void node.offsetWidth;
+          node.classList.add("is-checkpoint");
+        }
+        statusLabel.current = nextStatus;
+        statusRef.current.textContent = nextStatus;
+      }
+      hudRef.current?.setAttribute("aria-valuenow", String(percent));
     };
 
     const onScroll = () => {
@@ -56,10 +81,22 @@ export function SiteHeader({
       frame = window.requestAnimationFrame(update);
     };
 
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) booting.current = false;
+    const bootTimer = window.setTimeout(() => {
+      booting.current = false;
+      const fill = fillRef.current;
+      fill?.classList.remove("is-booting");
+      fill?.classList.add("is-settling");
+      update();
+      window.setTimeout(() => fill?.classList.remove("is-settling"), 520);
+    }, reduce ? 0 : 1280);
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      window.clearTimeout(bootTimer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
@@ -117,7 +154,10 @@ export function SiteHeader({
   }, [open]);
 
   return (
-    <header className={scrolled ? "site-header is-scrolled" : "site-header"}>
+    <header
+      className={scrolled ? "site-header is-scrolled" : "site-header"}
+      style={{ viewTransitionName: "site-header" }}
+    >
       <div className="wrap header-inner">
         <Link href="/" className="brand">
           {name}
@@ -126,6 +166,10 @@ export function SiteHeader({
           <ThemeToggle compact />
           <a className="email-action" href={`mailto:${email}`}>
             Email
+          </a>
+          <a className="cv-action" href={cv} target="_blank" rel="noreferrer">
+            CV
+            <span className="visually-hidden"> (opens in a new tab)</span>
           </a>
           <button
             type="button"
@@ -168,7 +212,26 @@ export function SiteHeader({
           </div>
         </nav>
       </div>
-      <span ref={progressRef} className="scroll-progress" aria-hidden="true" />
+      <div
+        ref={hudRef}
+        className="load-hud"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={0}
+        aria-label="Reading progress"
+      >
+        <span className="load-kicker">Load</span>
+        <span className="load-track">
+          <span ref={fillRef} className="load-fill is-booting" />
+        </span>
+        <span ref={statusRef} className="load-status">
+          Boot
+        </span>
+        <span ref={pctRef} className="load-pct">
+          000%
+        </span>
+      </div>
     </header>
   );
 }
