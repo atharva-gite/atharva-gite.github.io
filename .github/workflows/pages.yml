@@ -38,7 +38,18 @@ jobs:
           npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          echo "::notice::PAGES_BASE_PATH=[${PAGES_BASE_PATH}]"
+          set +e
+          npm run build > build.log 2>&1
+          code=$?
+          set -e
+          if [ "$code" -ne 0 ]; then
+            tail -n 30 build.log | while IFS= read -r line; do
+              echo "::error title=next build::$line"
+            done
+            exit "$code"
+          fi
         env:
           PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
 
