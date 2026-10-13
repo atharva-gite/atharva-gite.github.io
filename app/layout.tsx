@@ -67,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader
           name={profile.name}
           email={profile.email}
-          cv={profile.cv}
+          cv={profile.cvView}
           links={navigation}
         />
         {children}

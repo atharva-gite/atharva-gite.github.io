@@ -61,6 +61,8 @@ export const profile = {
   phone: "+44 7351160709",
   phoneHref: "tel:+447351160709",
   cv: sitePath("/Atharva-Gite-CV.pdf"),
+  cvView: sitePath("/cv/"),
+  cvSheets: [sitePath("/cv/1.png"), sitePath("/cv/2.png")] as const,
   credential: "MSc Advanced Computing, King's College London",
   lede: "What matters is how the details hold.",
   description:
@@ -145,7 +147,7 @@ export const education = [
     credential: "MSc, Advanced Computing",
     dates: "2026 – Expected 2027",
     detail: "London, England",
-    note: "These are current modules, not a list of finished ones.",
+    note: "",
   },
   {
     school: "Sardar Patel Institute of Technology",

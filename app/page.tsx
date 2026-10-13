@@ -261,7 +261,7 @@ export default function Home() {
                   <Magnetic>
                     <a
                       className="icon-link"
-                      href={profile.cv}
+                      href={profile.cvView}
                       target="_blank"
                       rel="noreferrer"
                       data-label="CV"
