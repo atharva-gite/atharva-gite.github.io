@@ -25,6 +25,8 @@ import {
 
 const workLead = ["studyforge", "yield-curve", "pairs"] as const;
 
+const skillLead = new Set(["Languages", "Frameworks / APIs", "Data & analytics"]);
+
 const orderedProjects = [
   ...workLead.flatMap((id) => {
     const project = projects.find((item) => item.id === id);
@@ -214,30 +216,50 @@ export default function Home() {
             <div className="section-heading">
               <h2>Skills</h2>
             </div>
-            <div className="skill-grid">
-              {skillGroups.map((group, groupIndex) => (
-                <div
-                  key={group.title}
-                  className="skill-slot"
-                  style={{ ["--i" as string]: groupIndex }}
-                >
-                <SpotSurface className="skill-group">
-                  <h3>{group.title}</h3>
-                  <ul className="chips">
-                    {group.courses.map((item, chipIndex) => (
-                      <li
-                        key={item}
-                        className="chip"
-                        style={{ ["--i" as string]: chipIndex }}
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </SpotSurface>
-                </div>
-              ))}
+            <div className="skill-grid skill-lead">
+              {skillGroups
+                .filter((group) => skillLead.has(group.title))
+                .map((group, groupIndex) => (
+                  <div
+                    key={group.title}
+                    className="skill-slot"
+                    style={{ ["--i" as string]: groupIndex }}
+                  >
+                    <SpotSurface className="skill-group">
+                      <h3>{group.title}</h3>
+                      <ul className="chips">
+                        {group.courses.map((item, chipIndex) => (
+                          <li
+                            key={item}
+                            className="chip"
+                            style={{ ["--i" as string]: chipIndex }}
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </SpotSurface>
+                  </div>
+                ))}
             </div>
+            <AnimatedDetails className="disclosure skill-rest" summary="Other tools">
+              <div className="skill-grid">
+                {skillGroups
+                  .filter((group) => !skillLead.has(group.title))
+                  .map((group) => (
+                    <div key={group.title} className="skill-group">
+                      <h3>{group.title}</h3>
+                      <ul className="chips">
+                        {group.courses.map((item) => (
+                          <li key={item} className="chip">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+              </div>
+            </AnimatedDetails>
             <SectionTrace kind="nodes" />
           </section>
         </Reveal>

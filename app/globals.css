@@ -248,12 +248,12 @@ p {
 }
 
 a {
-  color: var(--brass);
+  color: var(--ink);
   text-underline-offset: 0.18em;
 }
 
 a:visited {
-  color: var(--brass);
+  color: var(--ink);
 }
 
 a:hover {
@@ -323,7 +323,7 @@ a:hover {
 .kicker,
 .credential {
   margin: 0 0 0.85rem;
-  color: var(--brass);
+  color: var(--muted);
   font-size: 0.78rem;
   letter-spacing: 0.04em;
   line-height: 1.45;
@@ -351,11 +351,12 @@ a:hover {
   align-items: center;
   gap: 0.35rem 0.15rem;
   max-width: 48rem;
-  margin: 0.15rem auto 0.4rem;
-  font-size: clamp(1.45rem, 3.1vw, 2.2rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.15;
+  margin: 1.15rem auto 0.55rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
 }
 
 .lede-lockup span {
@@ -368,19 +369,17 @@ a:hover {
 
 .lede-lockup span:not(:last-child)::after {
   content: "";
-  width: 0.38rem;
-  height: 0.38rem;
-  border-radius: 50%;
-  background: var(--brass);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--brass) 80%, transparent);
+  width: 0.28rem;
+  height: 1px;
+  background: color-mix(in srgb, var(--ink) 28%, transparent);
 }
 
 .lede-aside {
   position: relative;
   z-index: 1;
-  margin: 0 auto;
+  margin: 0.2rem auto 0;
   color: var(--muted);
-  font-size: clamp(1.05rem, 1.7vw, 1.22rem);
+  font-size: 0.95rem;
   animation: hero-rise 640ms 980ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -404,7 +403,7 @@ a:hover {
 
 .site-header.is-scrolled {
   background: color-mix(in srgb, var(--bg) 86%, transparent);
-  border-bottom-color: color-mix(in srgb, var(--brass) 42%, transparent);
+  border-bottom-color: var(--line);
 }
 
 .load-hud {
@@ -415,7 +414,7 @@ a:hover {
   margin: 0.15rem auto 0;
   width: min(68rem, calc(100% - 2rem));
   padding: 0 0 0.7rem;
-  color: var(--brass);
+  color: var(--muted);
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.78rem;
   font-weight: 500;
@@ -428,23 +427,21 @@ a:hover {
 .load-status,
 .load-pct {
   padding: 0.32rem 0.45rem;
-  border: 1px solid color-mix(in srgb, var(--brass) 55%, transparent);
-  background: color-mix(in srgb, var(--brass) 10%, transparent);
+  border: 1px solid var(--line);
+  background: transparent;
 }
 
 .load-track {
   position: relative;
   height: 1.15rem;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--brass) 72%, transparent);
+  border: 1px solid var(--line);
   background: repeating-linear-gradient(
     90deg,
-    color-mix(in srgb, var(--brass) 22%, transparent) 0 8px,
+    color-mix(in srgb, var(--ink) 10%, transparent) 0 8px,
     transparent 8px 11px
   );
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb, #000 45%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--brass) 18%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #000 45%, transparent);
 }
 
 .load-fill {
@@ -454,7 +451,7 @@ a:hover {
   left: 0;
   width: 0;
   background: linear-gradient(180deg, var(--brass-strong), var(--brass) 42%, var(--brass-ink));
-  box-shadow: 0 0 16px color-mix(in srgb, var(--brass) 65%, transparent);
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -580,9 +577,9 @@ a:hover {
   justify-content: center;
   min-height: 44px;
   padding: 0.4rem 0.9rem;
-  border: 1px solid var(--brass);
+  border: 1px solid var(--line-strong);
   background: transparent;
-  color: var(--brass);
+  color: var(--ink);
   font-weight: 600;
   font-size: 0.92rem;
   letter-spacing: 0.01em;
@@ -597,9 +594,9 @@ a:hover {
 .cv-action:hover,
 .cv-action:visited,
 .cv-action:visited:hover {
-  border-color: var(--brass);
-  background: var(--brass);
-  color: var(--brass-ink);
+  border-color: var(--ink);
+  background: transparent;
+  color: var(--ink);
   transform: translateY(-2px);
 }
 
@@ -681,12 +678,12 @@ a:hover {
 .nav-list a[aria-current="location"],
 .nav-list a[aria-current="location"]:visited,
 .nav-list a[aria-current="location"]:hover {
-  color: var(--brass);
+  color: var(--ink);
 }
 
 .intro {
   position: relative;
-  padding: 2.75rem 0 4.75rem;
+  padding: 4.75rem 0 8.5rem;
   scroll-margin-top: calc(var(--header) + 0.5rem);
   text-align: center;
 }
@@ -695,12 +692,12 @@ a:hover {
   position: absolute;
   left: 50%;
   bottom: 0.15rem;
-  width: min(68rem, 142%);
-  height: 5.5rem;
+  width: min(34rem, 72%);
+  height: 3.15rem;
   transform: translateX(-50%);
   overflow: visible;
   pointer-events: none;
-  opacity: 0.92;
+  opacity: 0.45;
   mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
   filter: drop-shadow(0 0 8px color-mix(in srgb, var(--brass) 45%, transparent));
 }
@@ -708,7 +705,7 @@ a:hover {
 .hero-trace path {
   fill: none;
   stroke: var(--brass);
-  stroke-width: 1.6;
+  stroke-width: 1.15;
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
@@ -779,9 +776,9 @@ a:hover {
   display: inline-block;
   background-image: linear-gradient(
     105deg,
-    var(--ink) 0 40%,
-    var(--brass-strong) 50%,
-    var(--ink) 60% 100%
+    var(--brass-strong) 0 40%,
+    var(--ink) 50%,
+    var(--brass-strong) 60% 100%
   );
   background-size: 240% 100%;
   background-position: 100% 0;
@@ -849,10 +846,10 @@ a:hover {
   position: relative;
   z-index: 1;
   display: block;
-  width: 5.5rem;
-  height: 2px;
-  margin: 0.9rem auto 0.95rem;
-  background: var(--brass);
+  width: 3.25rem;
+  height: 1px;
+  margin: 1.7rem auto 1.35rem;
+  background: color-mix(in srgb, var(--ink) 28%, transparent);
   transform: scaleX(0);
   transform-origin: center;
   animation: draw-rule 420ms 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -1021,9 +1018,9 @@ a:hover {
 
 .section-heading h2::after {
   content: "";
-  width: 2rem;
+  width: 1.4rem;
   height: 1px;
-  background: var(--brass);
+  background: color-mix(in srgb, var(--ink) 28%, transparent);
   transform-origin: left center;
 }
 
@@ -1214,6 +1211,14 @@ a:hover {
 
 .project .summary {
   margin-inline: auto;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.project .points {
+  color: var(--muted);
+  font-size: 0.84rem;
 }
 
 .project-kicker {
@@ -1229,7 +1234,7 @@ a:hover {
 }
 
 .project-kicker span {
-  color: var(--brass);
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1238,8 +1243,10 @@ a:hover {
 }
 
 .project h3 {
-  margin-bottom: 0.45rem;
-  font-size: 1.45rem;
+  margin-bottom: 0.7rem;
+  font-size: clamp(1.7rem, 2.2vw, 2.15rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
 }
 
 .summary {
@@ -1261,7 +1268,7 @@ a:hover {
   top: 0.62em;
   width: 0.45rem;
   height: 1px;
-  background: var(--brass);
+  background: color-mix(in srgb, var(--ink) 28%, transparent);
 }
 
 .figures {
@@ -1279,8 +1286,10 @@ a:hover {
 }
 
 .figures strong {
-  font-size: 0.92rem;
+  color: var(--brass-strong);
+  font-size: 1.45rem;
   font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 .figures span {
@@ -1349,8 +1358,8 @@ a:hover {
   align-items: center;
   min-height: 44px;
   padding: 0.2rem 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--brass) 75%, transparent);
-  color: var(--brass);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
   font-size: 0.92rem;
   font-weight: 500;
   text-decoration: none;
@@ -1362,14 +1371,14 @@ a:hover {
 }
 
 .action:visited {
-  color: var(--brass);
+  color: var(--ink);
 }
 
 .action:hover,
 .action:visited:hover {
-  border-color: var(--brass);
-  background: var(--brass);
-  color: var(--brass-ink);
+  border-color: var(--ink);
+  background: transparent;
+  color: var(--ink);
   transform: translateY(-2px);
 }
 
@@ -1383,7 +1392,7 @@ a:hover {
   gap: 0.5rem;
   width: fit-content;
   min-height: 44px;
-  color: var(--brass);
+  color: var(--muted);
   font-weight: 500;
   cursor: pointer;
   list-style: none;
@@ -1409,7 +1418,7 @@ a:hover {
 }
 
 .disclosure summary:hover {
-  color: var(--brass-strong);
+  color: var(--ink);
 }
 
 .disclosure .when-open {
@@ -1459,7 +1468,7 @@ a:hover {
   top: 0.35rem;
   bottom: 0.35rem;
   width: 1px;
-  background: var(--brass);
+  background: color-mix(in srgb, var(--ink) 28%, transparent);
   transform: scaleY(0);
   transform-origin: top center;
 }
@@ -1529,7 +1538,7 @@ a:hover {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  background: var(--brass);
+  background: color-mix(in srgb, var(--ink) 45%, transparent);
 }
 
 .roles.can-draw:not(.is-drawn) .marker {
@@ -1597,10 +1606,12 @@ a:hover {
 }
 
 .role .figures strong {
-  color: var(--brass-strong);
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-size: 1.65rem;
+}
+
+.role .points {
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .role-head h3,
@@ -1691,9 +1702,9 @@ a:hover {
 .course-group h4::before,
 .course-group h4::after {
   content: "";
-  width: 1.6rem;
+  width: 1.1rem;
   height: 1px;
-  background: var(--brass);
+  background: color-mix(in srgb, var(--ink) 28%, transparent);
 }
 
 .course-list li {
@@ -1703,6 +1714,25 @@ a:hover {
 .skill-grid {
   display: grid;
   gap: 1.35rem 2rem;
+}
+
+.skill-rest {
+  margin-top: 1.35rem;
+  text-align: center;
+}
+
+.skill-rest summary {
+  margin-inline: auto;
+}
+
+.skill-rest .skill-grid {
+  margin-top: 0.35rem;
+  align-items: start;
+  text-align: left;
+}
+
+.skill-rest .skill-group {
+  height: auto;
 }
 
 .skill-group .chips {
@@ -1740,9 +1770,9 @@ a:hover {
 
 .skill-group h3::after {
   content: "";
-  width: 2.1rem;
+  width: 1.4rem;
   height: 1px;
-  background: var(--brass);
+  background: color-mix(in srgb, var(--ink) 28%, transparent);
   transform: scaleX(0);
   transform-origin: center;
 }
@@ -2007,7 +2037,7 @@ a:hover {
   }
 
   .intro {
-    padding: 4.5rem 0 5.5rem;
+    padding: 6.75rem 0 9.5rem;
   }
 
   .project,
@@ -2027,6 +2057,12 @@ a:hover {
 
   .section {
     padding: 3.15rem 0 5.1rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .skill-grid.skill-lead {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -2084,8 +2120,8 @@ a:hover {
     position: absolute;
     left: 0;
     bottom: 0.55rem;
-    height: 2px;
-    background: var(--brass);
+    height: 1px;
+    background: color-mix(in srgb, var(--ink) 35%, transparent);
     pointer-events: none;
     transition:
       transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -2333,7 +2369,8 @@ a:hover {
   stroke-linejoin: round;
 }
 
-.project-motif .draw {
+.project-motif .draw,
+.project-motif .rail {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
 }
@@ -2349,6 +2386,7 @@ a:hover {
 }
 
 .motif-folio .marker {
+  opacity: 0;
   transform: translateX(0);
 }
 
@@ -2409,6 +2447,11 @@ a:hover {
   animation-delay: 260ms;
 }
 
+.project:hover .motif-folio .rail,
+.project:focus-within .motif-folio .rail {
+  animation: motif-draw 520ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 .project:hover .motif-folio .marker,
 .project:focus-within .motif-folio .marker {
   animation: folio-step 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -2456,6 +2499,7 @@ a:hover {
 
 @keyframes folio-step {
   to {
+    opacity: 1;
     transform: translateX(22px);
   }
 }
@@ -2614,7 +2658,7 @@ a:hover {
   }
 
   .name-char > span {
-    color: var(--ink) !important;
+    color: var(--brass-strong) !important;
     background: none !important;
   }
 
@@ -2704,6 +2748,11 @@ a:hover {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .name-char > span {
+    color: #111 !important;
+    background: none !important;
   }
 
   .contact::before,

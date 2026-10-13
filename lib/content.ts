@@ -91,8 +91,8 @@ export const ledeHits = ["Software", "Machine learning", "Markets"] as const;
 
 export const about = {
   paragraphs: [
-    "Master's student at King's. I build systems across software, machine learning, and markets.",
-    "Those are the interests. I am always up for a conversation about the work.",
+    "I work with clients and senior stakeholders: demos, onboarding, and feedback turned into changes you can measure.",
+    "Strong analytical work, used to connect a business need with the technical execution.",
   ],
 } as const;
 
@@ -114,7 +114,9 @@ export const roles: Role[] = [
     ],
     points: [
       "Led the migration of an OCR pipeline for handwritten and scanned medical and pharma documents from local PyTesseract and PyMuPDF processing to the Mistral OCR-4 API. For files under 10MB, processing time went from 40s to 12s and extraction accuracy from 0.47 to 0.83.",
+      "Partnered directly with clients, including senior team members, to gather requirements, understand operational needs, support end-to-end onboarding, and translate user feedback into implemented product improvements.",
       "On VocaLink, which answers live inbound phone calls, played synthesized speech as it was generated instead of waiting for the full clip, and stopped it when the caller interrupted. That cut the pause before callers hear a reply by about 70%.",
+      "Presented product demonstrations and progress updates to stakeholders and senior management, communicating product capabilities and technical solutions to mixed audiences and bridging client needs with engineering execution.",
       "Integrated AI-assisted contract generation into a Contract Lifecycle and Finance Management platform (Python, Express, MongoDB, React), including reusable APIs across the contract, finance, and asset modules.",
       "Ran phone, SMS, and web chat through one engine that can finish a booking, a lead, or a ticket in the same conversation. The decision itself takes 60–125ms, inside a 700ms turn budget.",
     ],

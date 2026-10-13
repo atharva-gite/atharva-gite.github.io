@@ -37,7 +37,7 @@ export function ProjectMotif({ theme }: { theme: ProjectTheme }) {
       ) : null}
       {theme === "folio" ? (
         <>
-          <path className="rail" d="M10 36 H62" />
+          <path className="rail" pathLength="1" d="M10 36 H62" />
           <rect className="marker" x="14" y="26" width="12" height="20" rx="1.5" />
         </>
       ) : null}
