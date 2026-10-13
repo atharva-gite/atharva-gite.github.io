@@ -22,12 +22,27 @@ const mono = IBM_Plex_Mono({
   variable: "--font-mono",
 });
 
+const siteUrl = "https://atharva-gite.github.io";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: profile.name,
     template: `%s — ${profile.name}`,
   },
   description: profile.description,
+  openGraph: {
+    title: profile.name,
+    description: "Software, machine learning, and markets.",
+    url: siteUrl,
+    siteName: profile.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: profile.name,
+    description: "Software, machine learning, and markets.",
+  },
 };
 
 export const viewport: Viewport = {

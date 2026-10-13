@@ -1591,6 +1591,18 @@ a:hover {
   margin-bottom: 0.75rem;
 }
 
+.role .figures {
+  justify-content: flex-start;
+  margin: 0 0 0.95rem;
+}
+
+.role .figures strong {
+  color: var(--brass-strong);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
 .role-head h3,
 .school .role-head h3 {
   grid-column: 1;

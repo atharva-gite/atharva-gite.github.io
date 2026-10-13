@@ -41,6 +41,7 @@ export type Role = {
   org: string;
   dates: string;
   points: string[];
+  figures?: ProjectFigure[];
 };
 
 export type CourseGroup = {
@@ -105,6 +106,12 @@ export const roles: Role[] = [
     title: "Founding AI Engineer",
     org: "Celeris",
     dates: "Oct 2025 – Sep 2026",
+    figures: [
+      { value: "40s → 12s", caption: "OCR, files under 10MB" },
+      { value: "0.47 → 0.83", caption: "extraction accuracy" },
+      { value: "~70%", caption: "shorter pause before a reply" },
+      { value: "60–125ms", caption: "decision, inside a 700ms turn" },
+    ],
     points: [
       "Led the migration of an OCR pipeline for handwritten and scanned medical and pharma documents from local PyTesseract and PyMuPDF processing to the Mistral OCR-4 API. For files under 10MB, processing time went from 40s to 12s and extraction accuracy from 0.47 to 0.83.",
       "On VocaLink, which answers live inbound phone calls, played synthesized speech as it was generated instead of waiting for the full clip, and stopped it when the caller interrupted. That cut the pause before callers hear a reply by about 70%.",
@@ -116,6 +123,10 @@ export const roles: Role[] = [
     title: "Python Development Intern",
     org: "IDMS InfoTech",
     dates: "Jan 2025 – June 2025",
+    figures: [
+      { value: "3 min → 40s", caption: "meeting notes" },
+      { value: "70+", caption: "languages" },
+    ],
     points: [
       "Reduced automated minutes-of-meeting generation from about 3 minutes to 40 seconds by optimizing in-house transcription and processing workflows.",
       "Implemented multilingual meeting processing across 70+ languages, from transcription and translation through meeting summaries and email distribution.",
@@ -125,6 +136,7 @@ export const roles: Role[] = [
     title: "Teaching Assistant",
     org: "Sardar Patel Institute of Technology",
     dates: "Aug 2024 – May 2025",
+    figures: [{ value: "200+", caption: "students in lab" }],
     points: [
       "Guided 200+ undergraduate students in Ubuntu and Linux, terminal workflows, debugging, and operating systems fundamentals during laboratory sessions.",
       "Taught SQL, MySQL, and DBMS, and helped students troubleshoot environment and workflow issues.",

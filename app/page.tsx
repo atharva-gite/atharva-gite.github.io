@@ -135,6 +135,16 @@ export default function Home() {
                     <p className="dates">{role.dates}</p>
                     <p className="org">{role.org}</p>
                   </div>
+                  {role.figures ? (
+                    <ul className="figures">
+                      {role.figures.map((figure) => (
+                        <li key={figure.value}>
+                          <strong>{figure.value}</strong>
+                          <span>{figure.caption}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                   <ul className="points">
                     {role.points.map((point) => (
                       <li key={point}>{point}</li>
