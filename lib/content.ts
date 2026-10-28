@@ -273,8 +273,8 @@ export const skillGroups: CourseGroup[] = [
     ],
   },
   {
-    title: "AI tools",
-    courses: ["OpenAI", "LLM integration", "Retrieval-augmented generation","Cursor"],
+    title: "AI Tools",
+    courses: ["OpenAI API","Cursor", "Mistral API", "LangChain", "LlamaIndex", "Haystack", "Pinecone"],
   },
   {
     title: "Testing & build",
